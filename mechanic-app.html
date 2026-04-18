@@ -16,13 +16,50 @@
         <!-- Toast Container -->
         <div id="toast-container" class="toast-container"></div>
 
+        <!-- MODALS -->
+
+        <!-- 1. Safety Checklist Modal -->
+        <div id="modal-checklist" class="modal-overlay">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 style="color:var(--color-navy); font-size:1.125rem;">Safety Checklist</h3>
+                    <button class="modal-close" onclick="closeModal('modal-checklist')"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+                </div>
+                <div style="margin-bottom:1.5rem;">
+                    <label class="check-item"><input type="checkbox" class="safety-chk"> <span>Hard Hat & Safety Visor</span></label>
+                    <label class="check-item"><input type="checkbox" class="safety-chk"> <span>Insulated Safety Gloves (Class 2)</span></label>
+                    <label class="check-item"><input type="checkbox" class="safety-chk"> <span>Arc-Flash Protective Suit</span></label>
+                    <label class="check-item" style="border-bottom:none;"><input type="checkbox" class="safety-chk"> <span>Voltage Detector Verified</span></label>
+                </div>
+                <button class="btn-pay" id="btn-submit-safety" style="width:100%; opacity:0.5;" disabled>CONFIRM SAFETY GEAR</button>
+            </div>
+        </div>
+
+        <!-- 2. Hidden File Input for Upload Photo -->
+        <input type="file" id="camera-input" accept="image/*" capture="environment" style="display:none;">
+
+        <!-- 3. Live Support Chat Modal -->
+        <div id="modal-chat" class="modal-overlay">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 style="color:var(--color-navy); font-size:1.125rem;">Live Support</h3>
+                    <button class="modal-close" onclick="closeModal('modal-chat')"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+                </div>
+                <div class="chat-box" id="chat-box">
+                    <div class="chat-msg agent">Hello Arjun, this is Cmd Center. Do you need dispatch assistance?</div>
+                </div>
+                <div class="chat-input-row">
+                    <input type="text" id="chat-input" class="chat-input" placeholder="Type a message...">
+                    <button class="chat-send" id="btn-chat-send"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></button>
+                </div>
+            </div>
+        </div>
+
+
         <!-- HEADER -->
         <header class="mech-header">
             <div class="mech-profile-area">
-                <div class="mech-avatar">
-                    A
-                    <div class="mech-badge"><svg viewBox="0 0 24 24" width="10" height="10" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" style="display:block; margin: 2px auto;"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
-                </div>
+                <div class="mech-avatar">A<div class="mech-badge"><svg viewBox="0 0 24 24" stroke="white" stroke-width="3" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg></div></div>
                 <div class="mech-greeting">
                     <span style="font-size:0.75rem; color:var(--color-gray-500);">Good Morning,</span>
                     <strong style="color:var(--color-navy); font-size:1rem;">Arjun!</strong>
@@ -30,7 +67,7 @@
             </div>
             
             <div class="mech-wallet">
-                <span style="font-size:0.65rem; opacity:0.8; text-transform:uppercase; letter-spacing:0.05em;">Wallet Balance</span>
+                <span style="font-size:0.65rem; opacity:0.8; text-transform:uppercase;">Wallet Balance</span>
                 <strong style="font-size:1.125rem; font-family:monospace;">2,450 <span style="font-size:0.75rem; color:var(--color-orange);">CR</span></strong>
             </div>
         </header>
@@ -44,25 +81,15 @@
                     <span class="pulse-ring" style="width:10px; height:10px; margin-right:4px;"></span>
                 </h2>
                 
-                <!-- ALERT CARD -->
                 <div class="alert-card">
                     <div style="display:flex; align-items:center; gap:0.5rem; color:var(--color-orange); font-weight:700; margin-bottom:1rem; border-bottom:1px solid var(--color-gray-200); padding-bottom:0.5rem;">
                         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
                         URGENT DISPATCH
                     </div>
 
-                    <div class="alert-row">
-                        <span>Asset ID</span>
-                        <strong>Transformer TR-09</strong>
-                    </div>
-                    <div class="alert-row">
-                        <span>Identified Fault</span>
-                        <strong style="color:#ef4444;">Severe Vibration</strong>
-                    </div>
-                    <div class="alert-row">
-                        <span>Distance</span>
-                        <strong>2.1 km Away</strong>
-                    </div>
+                    <div class="alert-row"><span>Asset ID</span><strong>Transformer TR-09</strong></div>
+                    <div class="alert-row"><span>Identified Fault</span><strong style="color:#ef4444;">Severe Vibration</strong></div>
+                    <div class="alert-row"><span>Distance</span><strong>2.1 km Away</strong></div>
                     <div class="alert-row" style="margin-top:0.75rem; padding-top:0.75rem; border-top:1px dashed var(--color-gray-200);">
                         <span>Potential Reward</span>
                         <strong style="color:#10b981; font-size:1rem; font-family:monospace;">500 Credits</strong>
@@ -84,9 +111,7 @@
                     
                     <div class="route-line" id="map-route-line"></div>
                     
-                    <!-- Mechanic Location -->
                     <div class="pin dot-green" id="mech-location" style="top:25%; left:20%; width:12px; height:12px; box-shadow:0 0 12px #10b981;"></div>
-                    <!-- Transformer Location -->
                     <div class="pin dot-red-pulse" style="top:75%; left:80%; width:16px; height:16px;"></div>
 
                     <a href="https://maps.google.com/?q=28.7041,77.1025" target="_blank" class="open-maps-btn" title="Open in Google Maps">
@@ -100,28 +125,28 @@
                 <h2 class="section-title">Field Tools</h2>
                 <div class="tools-scroll">
                     
-                    <div class="tool-item">
+                    <div class="tool-item" id="tool-checklist" style="cursor:pointer;">
                         <div class="tool-icon">
                             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6z"></path><path d="M14 3v5h5M16 13H8M16 17H8M10 9H8"></path></svg>
                         </div>
                         Safety<br>Checklist
                     </div>
 
-                    <div class="tool-item">
+                    <div class="tool-item" id="tool-camera" style="cursor:pointer;">
                         <div class="tool-icon">
                             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M20.4 14.5L16 10 4 20"></path></svg>
                         </div>
                         Upload<br>Photo
                     </div>
 
-                    <div class="tool-item">
-                        <div class="tool-icon">
+                    <div class="tool-item" id="tool-sync" style="cursor:pointer;">
+                        <div class="tool-icon" id="sync-icon">
                             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
                         </div>
-                        Sync<br>Sensor
+                        <span id="sync-text">Sync<br>Sensor</span>
                     </div>
 
-                    <div class="tool-item">
+                    <div class="tool-item" id="tool-support" style="cursor:pointer;">
                         <div class="tool-icon" style="color:var(--color-navy);">
                             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
                         </div>
@@ -198,11 +223,19 @@
     </div>
 
     <script>
+        // Global Modal Logic
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
 
             // Toast Function
             const toastContainer = document.getElementById('toast-container');
-            function showToast(message, isSuccess = false) {
+            window.showToast = function(message, isSuccess = false) {
                 const toast = document.createElement('div');
                 toast.className = 'toast';
                 
@@ -213,7 +246,6 @@
                 toast.innerHTML = icon + `<span>${message}</span>`;
                 toastContainer.appendChild(toast);
                 
-                // Remove after 3 seconds
                 setTimeout(() => {
                     toast.style.opacity = '0';
                     toast.style.transform = 'translateY(-20px)';
@@ -222,7 +254,7 @@
                 }, 3000);
             }
             
-            // 1. Claim Job Animation Logic
+            // Job Animation
             const btnClaim = document.getElementById('btn-claim');
             const alertCard = document.querySelector('.alert-card');
             const routeLine = document.getElementById('map-route-line');
@@ -230,11 +262,9 @@
             
             if(btnClaim) {
                 btnClaim.addEventListener('click', () => {
-                    // Stop double clicks
                     if(btnClaim.disabled) return;
                     btnClaim.disabled = true;
 
-                    // Update Button UI
                     document.getElementById('claim-text').textContent = "EN ROUTE TO JOB";
                     document.getElementById('job-timer').style.display = 'none';
                     document.getElementById('claim-icon').innerHTML = '<circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 22 8"></polyline><line x1="8" y1="12" x2="12" y2="16"></line>';
@@ -242,11 +272,9 @@
                     btnClaim.style.background = '#10b981';
                     btnClaim.style.boxShadow = '0 4px 6px -1px rgba(16, 185, 129, 0.3)';
                     
-                    // Kill card pulse
                     alertCard.style.animation = 'none';
                     alertCard.style.borderColor = '#10b981';
                     
-                    // START MAP ANIMATION
                     routeLine.classList.add('enroute');
                     mechDot.classList.add('enroute');
 
@@ -254,36 +282,94 @@
                 });
             }
 
-            // 2. Field Tools (Toast interactions instead of alert)
-            const toolItems = document.querySelectorAll('.tool-item');
-            const toolActions = [
-                'Opening Safety Checklist Module...',
-                'Camera initialized. Ready for proof capture.',
-                'Syncing sensor data... Connection stable.',
-                'Connecting to Live Agent Support via radio...'
-            ];
-            
-            toolItems.forEach((item, index) => {
-                // Remove old inline onclicks if any just to be safe
-                item.removeAttribute('onclick'); 
-                item.addEventListener('click', () => {
-                    showToast(toolActions[index]);
+            // --- FUNCTIONAL TOOL LOGIC ---
+
+            // Tool 1: Safety Checklist
+            document.getElementById('tool-checklist').addEventListener('click', () => {
+                openModal('modal-checklist');
+            });
+            const safetyBoxes = document.querySelectorAll('.safety-chk');
+            const btnSubmitSafety = document.getElementById('btn-submit-safety');
+            safetyBoxes.forEach(box => {
+                box.addEventListener('change', () => {
+                    let allChecked = Array.from(safetyBoxes).every(cb => cb.checked);
+                    btnSubmitSafety.disabled = !allChecked;
+                    btnSubmitSafety.style.opacity = allChecked ? "1" : "0.5";
                 });
             });
+            btnSubmitSafety.addEventListener('click', () => {
+                closeModal('modal-checklist');
+                showToast('Safety Protocol Verified.', true);
+            });
 
-            // 3. View Routing (Bottom Nav)
+            // Tool 2: Camera
+            const cameraInput = document.getElementById('camera-input');
+            document.getElementById('tool-camera').addEventListener('click', () => {
+                cameraInput.click();
+            });
+            cameraInput.addEventListener('change', () => {
+                if(cameraInput.files.length > 0) {
+                    showToast('Photo uploaded successfully.', true);
+                }
+            });
+
+            // Tool 3: Sync Sensor
+            const syncIcon = document.getElementById('sync-icon');
+            const syncText = document.getElementById('sync-text');
+            document.getElementById('tool-sync').addEventListener('click', () => {
+                if(syncIcon.classList.contains('spin-anim')) return;
+                
+                syncIcon.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>';
+                syncIcon.classList.add('spin-anim');
+                syncText.innerHTML = 'Syncing...<br>Please Wait';
+                
+                setTimeout(() => {
+                    syncIcon.classList.remove('spin-anim');
+                    syncIcon.style.color = '#10b981';
+                    syncIcon.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>';
+                    syncText.innerHTML = 'Sensors<br>Synced';
+                    showToast('Data Synced with Headquarters.', true);
+                }, 2000);
+            });
+
+            // Tool 4: Live Support
+            document.getElementById('tool-support').addEventListener('click', () => {
+                openModal('modal-chat');
+            });
+            const chatBtn = document.getElementById('btn-chat-send');
+            const chatInput = document.getElementById('chat-input');
+            const chatBox = document.getElementById('chat-box');
+            
+            chatBtn.addEventListener('click', () => {
+                const text = chatInput.value.trim();
+                if(!text) return;
+                
+                const userMsg = document.createElement('div');
+                userMsg.className = 'chat-msg user';
+                userMsg.textContent = text;
+                chatBox.appendChild(userMsg);
+                chatInput.value = '';
+                chatBox.scrollTop = chatBox.scrollHeight;
+                
+                setTimeout(() => {
+                    const replyMsg = document.createElement('div');
+                    replyMsg.className = 'chat-msg agent';
+                    replyMsg.textContent = "Agent: Copy that Arjun, we are tracking your dispatch.";
+                    chatBox.appendChild(replyMsg);
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                }, 1000);
+            });
+            
+            // View Routing
             const navItems = document.querySelectorAll('.b-nav-item');
             const views = document.querySelectorAll('.app-view');
             
             navItems.forEach(item => {
                 item.addEventListener('click', (e) => {
                     e.preventDefault();
-                    
-                    // Toggle Nav Icons
                     navItems.forEach(n => n.classList.remove('active'));
                     item.classList.add('active');
                     
-                    // Toggle App Views
                     const tabName = item.getAttribute('data-tab');
                     views.forEach(view => {
                         view.classList.remove('active');

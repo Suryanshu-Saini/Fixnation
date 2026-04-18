@@ -1551,3 +1551,119 @@ input::placeholder {
     margin-bottom: 1rem;
     border: 1px solid var(--color-gray-200);
 }
+
+/* MODALS */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 31, 63, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+.modal-content {
+    background: white;
+    width: 90%;
+    max-width: 400px;
+    border-radius: var(--radius-xl);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-xl);
+    transform: translateY(20px);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--color-gray-200);
+    padding-bottom: 0.75rem;
+}
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--color-gray-500);
+    cursor: pointer;
+}
+
+/* Checklist form */
+.check-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--color-gray-100);
+}
+.check-item input[type="checkbox"] {
+    width: 1.25rem;
+    height: 1.25rem;
+    accent-color: var(--color-orange);
+}
+
+/* Chat Interface */
+.chat-box {
+    background: var(--color-gray-50);
+    border-radius: var(--radius-md);
+    height: 200px;
+    padding: 1rem;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.chat-msg {
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius-md);
+    max-width: 80%;
+    font-size: 0.875rem;
+}
+.chat-msg.agent {
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-200);
+    align-self: flex-start;
+}
+.chat-msg.user {
+    background: var(--color-orange);
+    color: white;
+    align-self: flex-end;
+}
+.chat-input-row {
+    display: flex;
+    gap: 0.5rem;
+}
+.chat-input {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+}
+.chat-send {
+    background: var(--color-navy);
+    color: white;
+    border: none;
+    padding: 0 1rem;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+}
+
+/* Sync Spinner */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+.spin-anim {
+    animation: spin 1s linear infinite;
+}
