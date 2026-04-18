@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FixNation | Enterprise Portal</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Link to Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Background grid layer -->
+    <div class="background-grid"></div>
+
+    <!-- Header Section -->
+    <header class="header">
+        <div class="brand">
+            <svg class="brand-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+            </svg>
+            <span class="brand-text">FixNation</span>
+        </div>
+        
+        <div class="header-actions">
+            <div class="notification-badge" title="5 Pending Requests" id="adminNotification">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                </svg>
+                <span class="badge-count">5</span>
+                <span class="badge-text" id="adminBadgeText">Pending Approvals</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-container">
+        <div class="access-card">
+            
+            <!-- Segmented Control for Role -->
+            <div class="role-selector">
+                <input type="radio" id="role-admin" name="role" value="admin" checked>
+                <label for="role-admin" class="role-option left-option">Govt Admin</label>
+                
+                <input type="radio" id="role-mechanic" name="role" value="mechanic">
+                <label for="role-mechanic" class="role-option right-option">Auth Mechanic</label>
+                
+                <div class="role-slider"></div>
+            </div>
+
+            <!-- LOGIN VIEW -->
+            <div id="login-view" class="view-section active">
+                <div class="form-header">
+                    <h2>Portal Access</h2>
+                    <p>Enter your credentials to access the secure system.</p>
+                </div>
+                
+                <form class="auth-form" id="loginForm">
+                    <div class="input-group">
+                        <label for="login-id">Organization ID / Email</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                            <input type="text" id="login-id" placeholder="Enter ID or email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="login-key">Access Key</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                            <input type="password" id="login-key" placeholder="Enter highly secure key" required>
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <a href="#" class="text-link">Forgot Password?</a>
+                        <a href="#" class="text-link">Request Tech Support</a>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary">LOGIN</button>
+                </form>
+
+                <div class="new-here-section hidden" id="newMechanicSection">
+                    <p class="divider"><span>New here?</span></p>
+                    <button type="button" class="btn-text" id="btnGoToSignup">Register as a Verified Technician</button>
+                </div>
+            </div>
+
+            <!-- SIGNUP VIEW -->
+            <div id="signup-view" class="view-section">
+                <div class="form-header">
+                    <button type="button" class="btn-back" id="btnBackToLogin">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                    </button>
+                    <h2>Technician Onboarding</h2>
+                    <p>Apply for authorization.</p>
+                </div>
+
+                <form class="auth-form" id="signupForm">
+                    <div class="input-group">
+                        <label for="signup-name">Full Name</label>
+                        <input type="text" id="signup-name" placeholder="As per official documents" required>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="signup-phone">Phone Number</label>
+                            <input type="tel" id="signup-phone" placeholder="10-digit number" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="signup-aadhaar">Aadhaar ID</label>
+                            <input type="text" id="signup-aadhaar" placeholder="12-digit ID" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Supporting Documents</label>
+                        <div class="upload-zone" id="documentUploadZone">
+                            <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                            <p class="upload-text"><strong>Drag & Drop</strong> or <span class="browse-link">Browse</span></p>
+                            <p class="upload-hint">Upload ITI/Diploma Certificate & Govt ID (PDF, JPG)</p>
+                            <input type="file" id="fileUpload" class="file-input" multiple accept=".pdf,.jpg,.jpeg,.png">
+                        </div>
+                        <ul class="file-list" id="fileList"></ul>
+                    </div>
+
+                    <div class="verification-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        <span>Identity will be verified via Government Audit</span>
+                    </div>
+
+                    <button type="submit" class="btn-secondary">Submit for Verification</button>
+                </form>
+            </div>
+            
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>

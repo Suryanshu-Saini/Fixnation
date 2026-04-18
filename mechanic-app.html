@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>FixNation | Mechanic App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="mechanic-body">
+
+    <div class="mobile-container">
+        
+        <!-- Toast Container -->
+        <div id="toast-container" class="toast-container"></div>
+
+        <!-- HEADER -->
+        <header class="mech-header">
+            <div class="mech-profile-area">
+                <div class="mech-avatar">
+                    A
+                    <div class="mech-badge"><svg viewBox="0 0 24 24" width="10" height="10" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" style="display:block; margin: 2px auto;"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                </div>
+                <div class="mech-greeting">
+                    <span style="font-size:0.75rem; color:var(--color-gray-500);">Good Morning,</span>
+                    <strong style="color:var(--color-navy); font-size:1rem;">Arjun!</strong>
+                </div>
+            </div>
+            
+            <div class="mech-wallet">
+                <span style="font-size:0.65rem; opacity:0.8; text-transform:uppercase; letter-spacing:0.05em;">Wallet Balance</span>
+                <strong style="font-size:1.125rem; font-family:monospace;">2,450 <span style="font-size:0.75rem; color:var(--color-orange);">CR</span></strong>
+            </div>
+        </header>
+
+        <!-- VIEW: HOME (Feed & Map) -->
+        <div id="view-Home" class="app-view active">
+            <!-- AVAILABLE JOBS FEED -->
+            <section class="mech-section">
+                <h2 class="section-title" style="display:flex; justify-content:space-between; align-items:center;">
+                    Nearby Faults (Live)
+                    <span class="pulse-ring" style="width:10px; height:10px; margin-right:4px;"></span>
+                </h2>
+                
+                <!-- ALERT CARD -->
+                <div class="alert-card">
+                    <div style="display:flex; align-items:center; gap:0.5rem; color:var(--color-orange); font-weight:700; margin-bottom:1rem; border-bottom:1px solid var(--color-gray-200); padding-bottom:0.5rem;">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                        URGENT DISPATCH
+                    </div>
+
+                    <div class="alert-row">
+                        <span>Asset ID</span>
+                        <strong>Transformer TR-09</strong>
+                    </div>
+                    <div class="alert-row">
+                        <span>Identified Fault</span>
+                        <strong style="color:#ef4444;">Severe Vibration</strong>
+                    </div>
+                    <div class="alert-row">
+                        <span>Distance</span>
+                        <strong>2.1 km Away</strong>
+                    </div>
+                    <div class="alert-row" style="margin-top:0.75rem; padding-top:0.75rem; border-top:1px dashed var(--color-gray-200);">
+                        <span>Potential Reward</span>
+                        <strong style="color:#10b981; font-size:1rem; font-family:monospace;">500 Credits</strong>
+                    </div>
+
+                    <button class="btn-cta-large" id="btn-claim">
+                        <span id="claim-text">CLAIM & START JOB</span>
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" id="claim-icon"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <span style="font-size:0.75rem; font-weight:500; opacity:0.9;" id="job-timer">(2m 45s)</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- NAVIGATION & TRACKING -->
+            <section class="mech-section" style="padding-top:0;">
+                <h2 class="section-title">Current Assignment Map</h2>
+                <div class="route-map-widget">
+                    <div class="map-bg" style="position:absolute; width:100%; height:100%; background: radial-gradient(var(--color-navy) 1px, transparent 1px); background-size:15px 15px; opacity:0.3;"></div>
+                    
+                    <div class="route-line" id="map-route-line"></div>
+                    
+                    <!-- Mechanic Location -->
+                    <div class="pin dot-green" id="mech-location" style="top:25%; left:20%; width:12px; height:12px; box-shadow:0 0 12px #10b981;"></div>
+                    <!-- Transformer Location -->
+                    <div class="pin dot-red-pulse" style="top:75%; left:80%; width:16px; height:16px;"></div>
+
+                    <a href="https://maps.google.com/?q=28.7041,77.1025" target="_blank" class="open-maps-btn" title="Open in Google Maps">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--color-navy)" stroke-width="2"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"></polygon><line x1="9" y1="3" x2="9" y2="18"></line><line x1="15" y1="6" x2="15" y2="21"></line></svg>
+                    </a>
+                </div>
+            </section>
+
+            <!-- VERIFICATION TOOLS -->
+            <section class="mech-section" style="padding-top:0;">
+                <h2 class="section-title">Field Tools</h2>
+                <div class="tools-scroll">
+                    
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6z"></path><path d="M14 3v5h5M16 13H8M16 17H8M10 9H8"></path></svg>
+                        </div>
+                        Safety<br>Checklist
+                    </div>
+
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M20.4 14.5L16 10 4 20"></path></svg>
+                        </div>
+                        Upload<br>Photo
+                    </div>
+
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                        </div>
+                        Sync<br>Sensor
+                    </div>
+
+                    <div class="tool-item">
+                        <div class="tool-icon" style="color:var(--color-navy);">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                        </div>
+                        Live<br>Support
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+        <!-- VIEW: MY REPAIRS -->
+        <div id="view-Repairs" class="app-view mech-section">
+            <h2 class="section-title">Repair History</h2>
+            <div class="mock-history-item">
+                <div class="alert-row"><strong>TR-05 Maintenance</strong> <span style="color:#10b981;">Completed</span></div>
+                <div style="font-size:0.75rem; color:var(--color-gray-500); margin-top:0.5rem;">Yesterday, 2:30 PM</div>
+            </div>
+            <div class="mock-history-item">
+                <div class="alert-row"><strong>TR-11 Calibration</strong> <span style="color:#10b981;">Completed</span></div>
+                <div style="font-size:0.75rem; color:var(--color-gray-500); margin-top:0.5rem;">Oct 12, 10:15 AM</div>
+            </div>
+            <div style="text-align:center; padding:2rem; color:var(--color-gray-400); font-size:0.875rem;">End of history</div>
+        </div>
+
+        <!-- VIEW: WALLET -->
+        <div id="view-Wallet" class="app-view mech-section">
+            <h2 class="section-title">Earnings Ledger</h2>
+            <div class="fin-card fin-card-navy" style="margin-bottom:1.5rem;">
+                <div class="fin-title">Available Credits</div>
+                <div class="fin-value">2,450</div>
+                <button class="btn-pay" style="margin-top:1rem; width:100%;">REDEEM TO BANK</button>
+            </div>
+            <div class="alert-card" style="padding:1rem; border:1px solid var(--color-gray-200); animation:none; box-shadow:none;">
+                <div class="alert-row"><span>Pending Payout</span> <strong>500 CR</strong></div>
+                <div class="alert-row"><span>Total Earned (YTD)</span> <strong>14,200 CR</strong></div>
+            </div>
+        </div>
+
+        <!-- VIEW: SETTINGS -->
+        <div id="view-Settings" class="app-view mech-section">
+            <h2 class="section-title">Account Settings</h2>
+            <div style="background:white; border-radius:var(--radius-md); padding:1rem; border:1px solid var(--color-gray-200); display:flex; flex-direction:column; gap:1rem;">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-size:0.875rem; font-weight:600;">Push Notifications</span>
+                    <input type="checkbox" checked style="width:1.25rem; height:1.25rem;">
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-size:0.875rem; font-weight:600;">Location Tracking (Live)</span>
+                    <input type="checkbox" checked style="width:1.25rem; height:1.25rem;">
+                </div>
+                <a href="index.html" style="color:#ef4444; font-size:0.875rem; font-weight:600; text-decoration:none; margin-top:1rem; display:block; text-align:center;">Sign Out</a>
+            </div>
+        </div>
+
+        <!-- BOTTOM NAVIGATION -->
+        <nav class="bottom-nav" id="bottomNav">
+            <a href="#" class="b-nav-item active" data-tab="Home">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                Home
+            </a>
+            <a href="#" class="b-nav-item" data-tab="Repairs">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20v-6M6 20V10M18 20V4"></path></svg>
+                My Repairs
+            </a>
+            <a href="#" class="b-nav-item" data-tab="Wallet">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+                Wallet
+            </a>
+            <a href="#" class="b-nav-item" data-tab="Settings">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                Settings
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Toast Function
+            const toastContainer = document.getElementById('toast-container');
+            function showToast(message, isSuccess = false) {
+                const toast = document.createElement('div');
+                toast.className = 'toast';
+                
+                const icon = isSuccess 
+                    ? '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#10b981" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>'
+                    : '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--color-orange)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>';
+                
+                toast.innerHTML = icon + `<span>${message}</span>`;
+                toastContainer.appendChild(toast);
+                
+                // Remove after 3 seconds
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    toast.style.transform = 'translateY(-20px)';
+                    toast.style.transition = 'all 0.3s ease';
+                    setTimeout(() => toast.remove(), 300);
+                }, 3000);
+            }
+            
+            // 1. Claim Job Animation Logic
+            const btnClaim = document.getElementById('btn-claim');
+            const alertCard = document.querySelector('.alert-card');
+            const routeLine = document.getElementById('map-route-line');
+            const mechDot = document.getElementById('mech-location');
+            
+            if(btnClaim) {
+                btnClaim.addEventListener('click', () => {
+                    // Stop double clicks
+                    if(btnClaim.disabled) return;
+                    btnClaim.disabled = true;
+
+                    // Update Button UI
+                    document.getElementById('claim-text').textContent = "EN ROUTE TO JOB";
+                    document.getElementById('job-timer').style.display = 'none';
+                    document.getElementById('claim-icon').innerHTML = '<circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 22 8"></polyline><line x1="8" y1="12" x2="12" y2="16"></line>';
+                    
+                    btnClaim.style.background = '#10b981';
+                    btnClaim.style.boxShadow = '0 4px 6px -1px rgba(16, 185, 129, 0.3)';
+                    
+                    // Kill card pulse
+                    alertCard.style.animation = 'none';
+                    alertCard.style.borderColor = '#10b981';
+                    
+                    // START MAP ANIMATION
+                    routeLine.classList.add('enroute');
+                    mechDot.classList.add('enroute');
+
+                    showToast('Job Dispatched! Route plotted to TR-09.', true);
+                });
+            }
+
+            // 2. Field Tools (Toast interactions instead of alert)
+            const toolItems = document.querySelectorAll('.tool-item');
+            const toolActions = [
+                'Opening Safety Checklist Module...',
+                'Camera initialized. Ready for proof capture.',
+                'Syncing sensor data... Connection stable.',
+                'Connecting to Live Agent Support via radio...'
+            ];
+            
+            toolItems.forEach((item, index) => {
+                // Remove old inline onclicks if any just to be safe
+                item.removeAttribute('onclick'); 
+                item.addEventListener('click', () => {
+                    showToast(toolActions[index]);
+                });
+            });
+
+            // 3. View Routing (Bottom Nav)
+            const navItems = document.querySelectorAll('.b-nav-item');
+            const views = document.querySelectorAll('.app-view');
+            
+            navItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    // Toggle Nav Icons
+                    navItems.forEach(n => n.classList.remove('active'));
+                    item.classList.add('active');
+                    
+                    // Toggle App Views
+                    const tabName = item.getAttribute('data-tab');
+                    views.forEach(view => {
+                        view.classList.remove('active');
+                        if (view.id === `view-${tabName}`) {
+                            view.classList.add('active');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
